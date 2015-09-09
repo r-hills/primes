@@ -1,46 +1,35 @@
-var pigLatin = function(inputString) {
+var getPrimes = function(numberInput) {
 
-  // debugger;
-  var display = stringClean(inputString);
-  return display;
-};
+  var outputArray = [];
+  debugger;
+  if(numberInput > 1) {
+    var targetNumber = parseInt(numberInput);
+    var index = 2;
+    var i;
 
-var stringClean = function(inString) {
-  var vowels = "aeiou";
-  var consonants = "bcdfghjklmnpqrstvwxyz";
-  var tokens = inString.split(" ");
-  var tempString;
-  var results = [];
-  var i;
+    // debugger;
+    if (targetNumber === 2) { outputArray.push(targetNumber); return outputArray; }
+    if (targetNumber < 5) { outputArray.push(2,targetNumber); return outputArray; }
+    if (targetNumber < 7) { outputArray.push(2,3,targetNumber); return outputArray; }
 
-  for(i=0; i < tokens.length; i++ ) {
-    var cleanString = tokens[i].replace(/[\W+]/g, "").toLowerCase();
+    outputArray = Array.apply(null, {length: targetNumber+1}).map(Number.call, Number).splice(3);
+    var multiple = 2;
 
-    if( cleanString.match(/[a-z]+/i) ) {
-      if( cleanString.length === 1 )  {
-        tempString = cleanString + "ay";
-      } else if (vowels.indexOf(cleanString[0]) > -1) {
-        tempString = cleanString + "ay";
-      } else if ( (cleanString.indexOf('qu')) > 0) {
-        var chunks = cleanString.split("qu", 2);
-        tempString = chunks[1] + chunks[0] + "quay";
-      } else if ( ((consonants.indexOf(cleanString[0] ) > -1) && (consonants.indexOf(cleanString[1]) > -1 )) ||
-                  ((cleanString[0] == 'q') && ('u'==cleanString[1]))
-                ) {
-        var firstTwoChars = cleanString.slice(0,2);
-        var restOfWord = cleanString.slice(2);
-        tempString = restOfWord + firstTwoChars + "ay";
-      } else if (consonants.indexOf(cleanString[0]) > -1 ) {
-        var firstChar = cleanString.slice(0,1);
-        var restOfWord = cleanString.slice(1);
-        tempString = restOfWord + firstChar + "ay";
-      }
-      results.push(tempString);
-    }
+    // add loop here for multiples
+      // for(i=multiple; i < targetNumber; i+multiple) {
+      //   outputArray.splice(i,1);
+      // }
+
   }
-  var output = results.join(" ");
-  return output;
+  return outputArray;
+
 };
+
+
+
+
+
+
 
 // function splitValue(input, index) {
 //     return input.substring(0, index) + "," + input.substring(index);
